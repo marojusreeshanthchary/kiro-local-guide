@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIRO - The Local Guide | Visakhapatnam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --light: #ecf0f1;
+            --dark: #1a1a1a;
+            --border: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .chat-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .features-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-box {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .user-msg {
+            background: #667eea;
+            color: white;
+            margin-left: 30px;
+            text-align: right;
+        }
+
+        .kiro-msg {
+            background: #f0f0f0;
+            color: var(--dark);
+            margin-right: 30px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            padding: 0 0 0 0;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .input-area input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-area button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .input-area button:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-card {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .feature-card p {
+            color: var(--primary);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .quick-queries {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quick-btn {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .reasoning {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #856404;
+            display: none;
+        }
+
+        .reasoning.show {
+            display: block;
+        }
+
+        .footer {
+            background: var(--light);
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--primary);
+            border-top: 1px solid var(--border);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .chat-box {
+                height: 250px;
+            }
+        }
+
+        .clear-btn {
+            padding: 8px 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .clear-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌊 KIRO - The Local Guide</h1>
+            <p>Your Visakhapatnam Local Intelligence & Recommendation Orchestrator</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <h3 style="color: var(--primary);">💬 Chat with KIRO</h3>
+                <div class="chat-box" id="chatBox"></div>
+                <div class="reasoning" id="reasoning"></div>
+                <div class="input-area">
+                    <input 
+                        type="text" 
+                        id="userInput" 
+                        placeholder="Ask in English or Telugu-mix... 'Light ga emaina thinali?'"
+                        autocomplete="off"
+                    >
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+                <button class="clear-btn" onclick="clearChat()">Clear Chat</button>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h3 style="color: var(--primary);">✨ Features & Examples</h3>
+                
+                <div class="feature-card">
+                    <h3>🍛 Food Recommender</h3>
+                    <p>Get local food recommendations based on time, budget & mood. Understands "light ga emaina" vs "heavy ga unbaya"</p>
+                    <div class="quick-queries">
+                        <button class="quick-btn" onclick="sendMessage('Light ga breakfast lo emaina best?')">Breakfast queries</button>
+                        <button class="quick-btn" onclick="sendMessage('Night time lo light food cheppu')">Night food options</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🗺️ Hangout Spots</h3>
+                    <p>Find best hangout places matching your vibe - beaches, old city, modern cafes. Time-aware suggestions.</p>
+                    <div class="quick-queries">
+                        <button class="quick-btn" onclick="sendMessage('Seashore lo chill spot emundi?')">Beach hangouts</button>
+                        <button class="quick-btn" onclick="sendMessage('Budget lo hangout spot eppatlo vasthey?')">Budget hangouts</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🚌 Travel & Transport</h3>
+                    <p>Navigate Vizag using local transport. Slang-aware travel suggestions with estimated time & cost.</p>
+                    <div class="quick-queries">
+                        <button class="quick-btn" onclick="sendMessage('RK Beach ki RTC lo eppatlo?')">RTC routes</button>
+                        <button class="quick-btn" onclick="sendMessage('Auto cost Old City ki?')">Transport cost</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🎤 Slang Translator</h3>
+                    <p>Understand & explain local Telugu-English slang. "Enti ra", "Anna", "Bagundi", "Thammudu" & more!</p>
+                    <div class="quick-queries">
+                        <button class="quick-btn" onclick="sendMessage('What does light ga mean?')">Slang definitions</button>
+                        <button class="quick-btn" onclick="sendMessage('Enti ra meaning?')">Local expressions</button>
+                    </div>
+                </div>
+
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-top: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">📊 Session Stats</h4>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="msgCount">0</div>
+                            <div>Messages</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="slangCount">0</div>
+                            <div>Slang Detected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="intentCount">0</div>
+                            <div>Intents Found</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <strong>KIRO v1.0</strong> | AI for Bharat Hackathon | Knowledge Source: product.md | All recommendations are local knowledge based
+            <div style="margin-top: 10px; opacity: 0.7;">
+                🌍 Works in English & Telugu mix | 🎯 Hyper-local intelligence | 🤖 No external API dependency
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Local Knowledge Base (from product.md)
+        const knowledgeBase = {
+            slangMap: {
+                "anna": { meaning: "Respectful address (brother)", context: "General address" },
+                "thammudu": { meaning: "Friend (brother)", context: "Casual peer address" },
+                "light ga": { meaning: "Light/simple/easy food", context: "Food order" },
+                "heavy ga": { meaning: "Spicy/rich/filling food", context: "Food order" },
+                "enti ra": { meaning: "What's up?", context: "Greeting" },
+                "eppatlo": { meaning: "When? What time?", context: "Time question" },
+                "seri": { meaning: "OK/agreed", context: "Confirmation" },
+                "bagundi": { meaning: "It's good/nice", context: "Appreciation" },
+                "cheppu": { meaning: "Tell me", context: "Request" },
+                "inka konni": { meaning: "A bit more/some more", context: "Food order" },
+                "vizag lo best": { meaning: "Best in Vizag", context: "Recommendation" },
+                "seashore lo chill": { meaning: "Relax by beach", context: "Hangout" },
+                "old city lo maze": { meaning: "Fun in old city", context: "Culture" },
+                "rtc lo madathey": { meaning: "Can manage by RTC bus", context: "Transport" }
+            },
+
+            foods: {
+                breakfast: [
+                    { name: "Idli-Sambar", price: "₹30-50", where: "Local dhabas", note: "Light, healthy" },
+                    { name: "Dosa", price: "₹40-70", where: "Every corner", note: "Crispy Vizag style" },
+                    { name: "Upma", price: "₹30-40", where: "Street vendors", note: "Quick, filling" },
+                    { name: "Puri-Curry", price: "₹40-60", where: "Old City", note: "Heavy breakfast" }
+                ],
+                lunch: [
+                    { name: "Biryani", price: "₹100-150", where: "Restaurants", note: "Meat-based, heavy" },
+                    { name: "Curry + Rice", price: "₹60-100", where: "Dhabas", note: "Spicy, authentic" },
+                    { name: "Fish Curry", price: "₹120-200", where: "Seafood stalls", note: "Fresh, coastal" }
+                ],
+                evening: [
+                    { name: "Mirchi Bajji", price: "₹20-40", where: "Street vendors", note: "Spicy, crispy" },
+                    { name: "Samosa", price: "₹10-20", where: "Everywhere", note: "Light snack" },
+                    { name: "Chai + Biscuits", price: "₹10-20", where: "Tea shops", note: "Comfort" }
+                ],
+                night: [
+                    { name: "Biryani", price: "₹100-150", where: "24-hr stalls", note: "Heavy, filling" },
+                    { name: "Maggi + Chai", price: "₹30-50", where: "Small shops", note: "Quick, comfort" },
+                    { name: "Chow Mein", price: "₹60-100", where: "Street vendors", note: "Modern hybrid" }
+                ]
+            },
+
+            hangouts: {
+                beach: [
+                    { name: "RK Beach", vibe: "Tourist + local mix", time: "6-8 AM or 5-7 PM", budget: "Free-₹100" },
+                    { name: "Rushikonda Beach", vibe: "Calm, less crowded", time: "Morning", budget: "Free" },
+                    { name: "Kailasagiri", vibe: "Hilltop views", time: "Evening sunset", budget: "₹100-300" }
+                ],
+                oldcity: [
+                    { name: "Old City Streets", vibe: "Authentic, maze-like", budget: "₹200-500" },
+                    { name: "Tank Bund", vibe: "Heritage, relaxed", budget: "₹0-100" }
+                ],
+                modern: [
+                    { name: "Inorbit Mall", vibe: "Shopping, AC", budget: "₹500-2000" },
+                    { name: "Aditya Mall", vibe: "Food, shopping", budget: "₹500-1500" }
+                ]
+            },
+
+            transport: {
+                auto: { price: "₹50-150", time: "10-30 min", use: "Short distances, night" },
+                rtc: { price: "₹10-30", time: "20-60 min", use: "Budget, longer routes" },
+                cab: { price: "₹100-300", time: "15-40 min", use: "Comfort, safety" }
+            },
+
+            times: {
+                bestBreakfast: "6 AM - 10 AM (light, fresh)",
+                bestLunch: "12 PM - 3 PM (all shops open)",
+                bestEvening: "5 PM - 8 PM (cool weather)",
+                bestBeach: "6-8 AM or 5-7 PM (avoid 12-4 PM heat)",
+                bestFood: "8-10 AM breakfast, 6-8 PM dinner"
+            }
+        };
+
+        // Statistics
+        let stats = {
+            messages: 0,
+            slangDetected: 0,
+            intents: 0
+        };
+
+        // Intent Detection
+        function detectIntent(text) {
+            const lower = text.toLowerCase();
+            const intents = [];
+
+            if (lower.includes("food") || lower.includes("eat") || lower.includes("thinali") || lower.includes("unbaya")) {
+                intents.push("food");
+            }
+            if (lower.includes("beach") || lower.includes("hangout") || lower.includes("chill") || lower.includes("seashore")) {
+                intents.push("hangout");
+            }
+            if (lower.includes("auto") || lower.includes("bus") || lower.includes("rtc") || lower.includes("travel") || lower.includes("eppatlo")) {
+                intents.push("travel");
+            }
+            if (lower.includes("meaning") || lower.includes("slang") || lower.includes("anna") || lower.includes("thammudu")) {
+                intents.push("slang");
+            }
+            if (lower.includes("time") || lower.includes("best time") || lower.includes("eppatlo")) {
+                intents.push("time");
+            }
+            if (lower.includes("price") || lower.includes("cost") || lower.includes("budget") || lower.includes("kharchu")) {
+                intents.push("budget");
+            }
+
+            return intents.length > 0 ? intents : ["general"];
+        }
+
+        // Slang Detection
+        function detectSlang(text) {
+            const detected = [];
+            const lower = text.toLowerCase();
+
+            for (const [slang, data] of Object.entries(knowledgeBase.slangMap)) {
+                if (lower.includes(slang)) {
+                    detected.push({ slang, ...data });
+                }
+            }
+
+            return detected;
+        }
+
+        // Response Generation
+        function generateResponse(userMsg) {
+            const slang = detectSlang(userMsg);
+            const intents = detectIntent(userMsg);
+            const lower = userMsg.toLowerCase();
+
+            let response = "";
+            let reasoning = "";
+
+            // Update stats
+            stats.messages++;
+            stats.slangDetected += slang.length;
+            stats.intents += intents.length;
+            updateStats();
+
+            // Generate reasoning
+            if (slang.length > 0) {
+                reasoning += `<strong>Slang Detected:</strong> ${slang.map(s => `"${s.slang}" (${s.meaning})`).join(", ")}<br>`;
+            }
+            reasoning += `<strong>Intent:</strong> ${intents.join(", ")}`;
+
+            // Route by intent
+            if (intents.includes("food") || (intents.includes("general") && lower.includes("emaina"))) {
+                response = generateFoodResponse(lower, slang);
+            } else if (intents.includes("hangout")) {
+                response = generateHangoutResponse(lower);
+            } else if (intents.includes("travel")) {
+                response = generateTravelResponse(lower);
+            } else if (intents.includes("slang")) {
+                response = generateSlangResponse(slang, lower);
+            } else if (intents.includes("budget") || intents.includes("price")) {
+                response = generateBudgetResponse(lower);
+            } else {
+                response = "Seri, thammudu! Cheppu—food, hangout, transport, or slang knowledge lo emaina chuskuntava? I'm here to guide you Vizag local style! 🌊";
+            }
+
+            displayMessage("KIRO", response, reasoning);
+            return response;
+        }
+
+        function generateFoodResponse(msg, slang) {
+            let response = "Vizag lo food recommendations:<br><br>";
+
+            // Detect time preference
+            if (msg.includes("breakfast") || msg.includes("morning") || msg.includes("6") || msg.includes("8")) {
+                response += "<strong>Breakfast (6-10 AM):</strong><br>";
+                knowledgeBase.foods.breakfast.forEach(f => {
+                    response += `• <strong>${f.name}</strong> - ${f.price} (${f.where})<br>`;
+                });
+            } else if (msg.includes("lunch") || msg.includes("12") || msg.includes("afternoon")) {
+                response += "<strong>Lunch (12-3 PM):</strong><br>";
+                knowledgeBase.foods.lunch.forEach(f => {
+                    response += `• <strong>${f.name}</strong> - ${f.price} (${f.where})<br>`;
+                });
+            } else if (msg.includes("evening") || msg.includes("4") || msg.includes("5") || msg.includes("6") || msg.includes("snack")) {
+                response += "<strong>Evening Snacks (4-7 PM):</strong><br>";
+                knowledgeBase.foods.evening.forEach(f => {
+                    response += `• <strong>${f.name}</strong> - ${f.price} (${f.where})<br>`;
+                });
+            } else if (msg.includes("night") || msg.includes("late") || msg.includes("8") || msg.includes("9") || msg.includes("10")) {
+                response += "<strong>Night (8-11 PM):</strong><br>";
+                knowledgeBase.foods.night.forEach(f => {
+                    response += `• <strong>${f.name}</strong> - ${f.price} (${f.where})<br>`;
+                });
+            } else {
+                // Default recommendation
+                response += "<strong>Popular options across time:</strong><br>";
+                response += `• <strong>Idli-Sambar</strong> - ₹30-50 (Light, morning)<br>`;
+                response += `• <strong>Dosa</strong> - ₹40-70 (Crispy, any time)<br>`;
+                response += `• <strong>Biryani</strong> - ₹100-150 (Heavy, lunch/night)<br>`;
+                response += `• <strong>Maggi + Chai</strong> - ₹30-50 (Quick, late night)<br>`;
+            }
+
+            // Detect lightness preference
+            if (msg.includes("light")) {
+                response += "<br><strong>Light options:</strong> Idli, Upma, Samosa, Chai<br>";
+            }
+            if (msg.includes("heavy") || msg.includes("spicy")) {
+                response += "<br><strong>Heavy/Spicy options:</strong> Biryani, Curry, Puri-Curry<br>";
+            }
+
+            response += "<br>💡 <em>Old City lo cheapest & most authentic. RTC lo madathey—budget-friendly option!</em>";
+            return response;
+        }
+
+        function generateHangoutResponse(msg) {
+            let response = "Vizag hangout spots:<br><br>";
+
+            if (msg.includes("beach") || msg.includes("seashore")) {
+                response += "<strong>🏖️ Beach Hangouts:</strong><br>";
+                knowledgeBase.hangouts.beach.forEach(b => {
+                    response += `• <strong>${b.name}</strong> - ${b.vibe}<br>  Best time: ${b.time} | Budget: ${b.budget}<br>`;
+                });
+            } else if (msg.includes("old city")) {
+                response += "<strong>🏘️ Old City Vibes:</strong><br>";
+                knowledgeBase.hangouts.oldcity.forEach(o => {
+                    response += `• <strong>${o.name}</strong> - ${o.vibe} | Budget: ${o.budget}<br>`;
+                });
+            } else if (msg.includes("modern") || msg.includes("mall")) {
+                response += "<strong>🏬 Modern Hangouts:</strong><br>";
+                knowledgeBase.hangouts.modern.forEach(m => {
+                    response += `• <strong>${m.name}</strong> - ${m.vibe} | Budget: ${m.budget}<br>`;
+                });
+            } else {
+                response += "<strong>All hangout options:</strong><br>";
+                response += "🏖️ <strong>Beaches:</strong> RK Beach (mixed vibe), Rushikonda (calm), Kailasagiri (sunset)<br>";
+                response += "🏘️ <strong>Old City:</strong> Authentic, maze-like streets, street food<br>";
+                response += "🏬 <strong>Modern:</strong> Inorbit & Aditya Mall for shopping/food<br>";
+            }
+
+            if (msg.includes("night") || msg.includes("evening")) {
+                response += "<br>💡 <em>Best evening time: 5-8 PM (cool weather, scenic)</em>";
+            }
+
+            if (msg.includes("budget")) {
+                response += "<br>💡 <em>Budget option: Beaches (free), Old City streets (cheap food), Tank Bund walk</em>";
+            }
+
+            return response;
+        }
+
+        function generateTravelResponse(msg) {
+            let response = "Vizag transport guide:<br><br>";
+
+            response += "<strong>Transport Options:</strong><br>";
+            response += `• <strong>Auto:</strong> ${knowledgeBase.transport.auto.price} - ${knowledgeBase.transport.auto.time}<br>`;
+            response += `• <strong>RTC Bus:</strong> ${knowledgeBase.transport.rtc.price} - ${knowledgeBase.transport.rtc.time}<br>`;
+            response += `• <strong>Cab (Uber/Ola):</strong> ${knowledgeBase.transport.cab.price} - ${knowledgeBase.transport.cab.time}<br>`;
+
+            if (msg.includes("rk beach") || msg.includes("beach")) {
+                response += "<br>📍 <strong>To RK Beach:</strong><br>";
+                response += "• Auto: ₹60-100 (20 min)<br>";
+                response += "• RTC: ₹20-30 (30-40 min)<br>";
+                response += "• Cab: ₹150-200 (15 min)<br>";
+            }
+
+            if (msg.includes("old city")) {
+                response += "<br>📍 <strong>To Old City:</strong><br>";
+                response += "• Auto: ₹50-100 (20 min)<br>";
+                response += "• RTC: ₹15-25 (35 min)<br>";
+                response += "• Cab: ₹120-180 (15 min)<br>";
+            }
+
+            if (msg.includes("cheap") || msg.includes("budget")) {
+                response += "<br>💡 <em>RTC lo madathey—cheapest option! Auto next best for short distance.</em>";
+            }
+
+            return response;
+        }
+
+        function generateSlangResponse(slang, msg) {
+            let response = "<strong>Vizag Slang Guide:</strong><br><br>";
+
+            if (slang.length > 0) {
+                slang.forEach(s => {
+                    response += `<strong>"${s.slang}"</strong> = ${s.meaning}<br>`;
+                    response += `  Context: ${s.context}<br><br>`;
+                });
+            } else {
+                response += "Common Vizag slang:<br>";
+                response += `<strong>"Anna"</strong> = Respectful address<br>`;
+                response += `<strong>"Light ga"</strong> = Light/simple food<br>`;
+                response += `<strong>"Heavy ga"</strong> = Spicy/rich food<br>`;
+                response += `<strong>"Thammudu"</strong> = Friend/buddy<br>`;
+                response += `<strong>"Seri"</strong> = OK/agreed<br>`;
+                response += `<strong>"Bagundi"</strong> = It's good/nice<br>`;
+                response += `<strong>"Eppatlo"</strong> = When?/What time?<br>`;
+                response += `<strong>"Enti ra"</strong> = What's up?<br>`;
+            }
+
+            response += "<br>💬 Mix Telugu + English freely—locals appreciate the effort!";
+            return response;
+        }
+
+        function generateBudgetResponse(msg) {
+            let response = "<strong>Budget Breakdown:</strong><br><br>";
+            response += "💰 <strong>Low Budget Day (₹250-600):</strong><br>";
+            response += "• Food: ₹200-400 (street food, dhabas)<br>";
+            response += "• Transport: ₹50-100 (RTC bus)<br>";
+            response += "• Hangouts: ₹0-100 (free beaches)<br>";
+            response += "<br>💰 <strong>Medium Budget Day (₹900-1800):</strong><br>";
+            response += "• Food: ₹500-1000 (restaurants)<br>";
+            response += "• Transport: ₹200-300 (mix auto/cab)<br>";
+            response += "• Hangouts: ₹200-500 (malls, entry fees)<br>";
+            response += "<br>💡 <em>Money-saving tips: Eat at Old City (cheapest!), use RTC buses, visit free beaches</em>";
+            return response;
+        }
+
+        function displayMessage(sender, message, reasoning = "") {
+            const chatBox = document.getElementById("chatBox");
+            const msgDiv = document.createElement("div");
+            msgDiv.className = sender === "KIRO" ? "message kiro-msg" : "message user-msg";
+            msgDiv.innerHTML = message;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            if (reasoning) {
+                const reasonDiv = document.getElementById("reasoning");
+                reasonDiv.innerHTML = reasoning;
+                reasonDiv.classList.add("show");
+            }
+        }
+
+        function sendMessage(message = null) {
+            const input = document.getElementById("userInput");
+            const userMsg = message || input.value.trim();
+
+            if (!userMsg) return;
+
+            displayMessage("You", userMsg);
+            input.value = "";
+
+            // Simulate typing delay
+            setTimeout(() => {
+                generateResponse(userMsg);
+            }, 300);
+        }
+
+        function clearChat() {
+            document.getElementById("chatBox").innerHTML = "";
+            document.getElementById("reasoning").classList.remove("show");
+            stats = { messages: 0, slangDetected: 0, intents: 0 };
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById("msgCount").textContent = stats.messages;
+            document.getElementById("slangCount").textContent = stats.slangDetected;
+            document.getElementById("intentCount").textContent = stats.intents;
+        }
+
+        // Enable Enter key to send
+        document.getElementById("userInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        // Welcome message
+        window.addEventListener("load", () => {
+            displayMessage("KIRO", "Namaste! 🙏 I'm KIRO, your Visakhapatnam local guide! <br><br>Ask me about:<br>🍛 Food & eating spots<br>🏖️ Hangout places<br>🚌 Transport & travel<br>🎤 Local slang & culture<br><br>Speak naturally in English or Telugu-mix. Try 'Light ga breakfast lo emaina best?'");
+        });
+    </script>
+</body>
+</html>
