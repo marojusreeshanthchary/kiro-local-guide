@@ -1,0 +1,126 @@
+{
+  "city_name": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "country": "India",
+  "nickname": "City of Destiny",
+  "primary_languages": ["Telugu", "English", "Hindi"],
+  "demographics": {
+    "vibe": "Beach city, port town, tech-growing hub",
+    "population_type": "Mix of locals, tech workers, traders",
+    "cultural_background": "Andhra Pradesh heritage, coastal culture"
+  },
+  "climate": {
+    "best_season": "October-February",
+    "worst_season": "March-May (hot), June-September (rainy)",
+    "temperature_range": "15°C - 38°C"
+  },
+  "geography": {
+    "coastline": "45 km",
+    "key_areas": ["RK Beach", "Old City", "IT Corridor", "Port area", "Seashore"],
+    "landmarks": ["RK Beach", "Kailasagiri", "Rushikonda Beach", "Tank Bund", "Visakha Museum"]
+  },
+  "food_culture": {
+    "signature_cuisine": "Andhra (spicy, rice-based)",
+    "specialty_items": ["Biryani", "Fish Curry", "Gongura Chutney", "Idli-Sambar", "Dosa"],
+    "street_food_prevalence": "Very high, especially in Old City",
+    "meal_times": {
+      "breakfast": "6-10 AM",
+      "lunch": "12-3 PM",
+      "evening_snacks": "4-7 PM",
+      "dinner": "8-11 PM"
+    }
+  },
+  "transport": {
+    "modes": ["Auto-rickshaw", "RTC Bus", "Cab (Uber/Ola)", "Two-wheeler"],
+    "primary_mode": "Auto-rickshaw for short, RTC for long",
+    "cost_efficiency": "RTC cheapest, Auto mid-range, Cab most expensive",
+    "key_routes": [
+      "Airport to City Center: 30 min",
+      "RK Beach to Old City: 20 min",
+      "IT Corridor to Seashore: 25 min"
+    ]
+  },
+  "economy": {
+    "employment_sectors": ["Port industry", "IT/Tech", "Tourism", "Manufacturing"],
+    "job_hubs": ["IT Corridor", "Port area", "Old City (trade)"],
+    "cost_of_living": "Moderate to low"
+  },
+  "hangout_culture": {
+    "primary_hangouts": ["Beaches", "Old City streets", "Malls"],
+    "peak_hours": "5-8 PM (evening, pleasant weather)",
+    "social_style": "Mix of family-oriented and peer groups",
+    "budget_culture": "Strong street food culture, bargaining common"
+  },
+  "weather_impact": {
+    "october_to_february": "Cool, breezy, best for outdoor activities",
+    "march_to_may": "Hot, dusty, stick to indoors",
+    "june_to_september": "Humid, wet, wavy beaches but indoor preferred"
+  },
+  "local_behavior": {
+    "dos": [
+      "Use 'Anna' or 'Thammudu' for casual address",
+      "Speak Telugu-English mix (locals appreciate)",
+      "Respect elders with honorifics",
+      "Eat with hands in dhabas (acceptable)",
+      "Bargain at street vendors",
+      "Ask directions confidently"
+    ],
+    "donts": [
+      "Don't assume English everywhere",
+      "Don't be loud in restaurants",
+      "Don't disrespect beaches/public spaces",
+      "Don't walk alone late night (after 10 PM)",
+      "Don't wear very revealing clothes in Old City",
+      "Don't show disrespect to elders"
+    ]
+  },
+  "budget_categories": {
+    "low_budget": {
+      "daily_range": "₹250-600",
+      "food": "₹200-400 (street food)",
+      "transport": "₹50-100 (RTC buses)",
+      "hangouts": "₹0-100 (free beaches)",
+      "style": "Street food hopping, public transport, free attractions"
+    },
+    "medium_budget": {
+      "daily_range": "₹900-1800",
+      "food": "₹500-1000 (restaurants)",
+      "transport": "₹200-300 (mix auto/cab)",
+      "hangouts": "₹200-500 (malls, entry fees)",
+      "style": "Comfortable dining, mixed transport, paid attractions"
+    },
+    "high_budget": {
+      "daily_range": "₹3000+",
+      "food": "₹1500+ (premium restaurants)",
+      "transport": "₹500+ (cabs, private)",
+      "hangouts": "₹1000+ (luxury hangouts)",
+      "style": "Premium dining, private transport, exclusive venues"
+    }
+  },
+  "money_saving_tips": [
+    "Eat at Old City (cheapest, most authentic)",
+    "Use RTC buses instead of autos (50% cheaper)",
+    "Visit beaches (free entry)",
+    "Street food is 50% cheaper than restaurants",
+    "Bargain at vendor stalls",
+    "Travel during non-peak hours"
+  ],
+  "emergency_contacts": {
+    "police": "100",
+    "ambulance": "102",
+    "fire": "101",
+    "tourist_info": "Local hotels and tourist centers"
+  },
+  "interesting_facts": [
+    "Vizag has one of India's busiest ports",
+    "Known for authentic Andhra cuisine",
+    "45 km of coastline to explore",
+    "Growing IT hub with startups",
+    "Telugu is dominant language",
+    "Famous for golden hour sunrises and sunsets",
+    "Beach city culture is inclusive and friendly"
+  ],
+  "version": "1.0",
+  "last_updated": "2025-12-28",
+  "maintained_by": "Local Guide Team"
+}

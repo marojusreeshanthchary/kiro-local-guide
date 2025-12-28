@@ -1,0 +1,88 @@
+{
+  "intent_patterns": {
+    "food_intent": {
+      "keywords": ["food", "eating", "thinali", "unbaya", "emaina", "light", "heavy", "breakfast", "lunch", "dinner", "snack", "hungry", "eat", "curry", "rice"],
+      "slang_triggers": ["light ga emaina", "heavy ga unbaya", "thinali ani", "khana", "dinner", "kharchu"],
+      "time_context": ["breakfast", "lunch", "evening", "night", "morning", "afternoon"],
+      "budget_context": ["cheap", "expensive", "price", "kharchu", "budget"],
+      "response_type": "food_recommendation"
+    },
+    "hangout_intent": {
+      "keywords": ["hangout", "chill", "spot", "place", "go", "visit", "seashore", "beach", "park", "mall", "cafe", "restaurant"],
+      "slang_triggers": ["seashore lo chill", "old city lo maze", "spot cheppu", "chill vasthey"],
+      "vibe_context": ["calm", "crowded", "family", "couple", "alone", "group"],
+      "budget_context": ["free", "cheap", "expensive", "premium"],
+      "response_type": "hangout_recommendation"
+    },
+    "travel_intent": {
+      "keywords": ["travel", "go", "reach", "transport", "bus", "auto", "cab", "cost", "time", "distance", "ride", "commute"],
+      "slang_triggers": ["rtc lo madathey", "eppatlo vasthey", "auto cost etuvanti", "bus cheppi vellipovu"],
+      "location_context": ["beach", "old city", "mall", "station", "airport", "office"],
+      "urgency_context": ["fast", "quick", "slow", "cheap", "expensive"],
+      "response_type": "travel_guidance"
+    },
+    "slang_intent": {
+      "keywords": ["meaning", "slang", "what", "word", "phrase", "anna", "thammudu", "emaina", "enti", "seri", "bagundi"],
+      "slang_triggers": ["anna meaning", "what does", "explain", "translate", "what is"],
+      "response_type": "slang_translation"
+    },
+    "time_intent": {
+      "keywords": ["best time", "when", "eppatlo", "season", "weather", "time", "hour", "morning", "evening", "night"],
+      "context": ["weather", "crowd", "safety", "food_availability", "comfort"],
+      "response_type": "time_guidance"
+    },
+    "budget_intent": {
+      "keywords": ["price", "cost", "budget", "expensive", "cheap", "affordable", "kharchu", "rate"],
+      "context": ["food", "transport", "hangout", "total", "per_person"],
+      "response_type": "budget_breakdown"
+    },
+    "general_intent": {
+      "keywords": ["hello", "hi", "help", "tell me", "cheppu", "guide", "suggest"],
+      "response_type": "general_guidance"
+    }
+  },
+  "intent_detection_rules": {
+    "primary": "Match keywords first, then slang_triggers",
+    "secondary": "Use context keywords for refinement",
+    "tertiary": "If ambiguous, ask for clarification",
+    "fallback": "Default to general_intent"
+  },
+  "context_modifiers": {
+    "time_modifiers": {
+      "morning": "6 AM - 10 AM",
+      "afternoon": "12 PM - 3 PM",
+      "evening": "5 PM - 8 PM",
+      "night": "8 PM - 11 PM",
+      "day": "8 AM - 6 PM",
+      "latenight": "10 PM - 12 AM"
+    },
+    "season_modifiers": {
+      "cool": "October - February (best)",
+      "hot": "March - May (avoid outdoor)",
+      "rainy": "June - September (indoor preferred)",
+      "best": "October - December"
+    },
+    "budget_modifiers": {
+      "cheap": "₹10 - ₹100",
+      "affordable": "₹100 - ₹300",
+      "moderate": "₹300 - ₹1000",
+      "premium": "₹1000+"
+    }
+  },
+  "response_templates": {
+    "food": "Generate list with prices, location, notes. Ask for time/budget preference if ambiguous.",
+    "hangout": "Suggest spot with vibe, best time, budget. Consider weather and user preference.",
+    "travel": "Provide mode options with time/cost estimates. Suggest cheapest vs fastest.",
+    "slang": "Explain meaning, usage, example. Show cultural context.",
+    "time": "Recommend best time with reasons. Show weather impact.",
+    "budget": "Breakdown daily costs by category. Show money-saving tips.",
+    "general": "Offer main capabilities: food, hangout, travel, slang, time, budget guidance"
+  },
+  "error_handling": {
+    "unknown_intent": "Ask for clarification: 'Cheppu—food, hangout, transport, or slang knowledge lo emaina?'",
+    "missing_context": "Ask follow-up: 'Eppatlo vasthey?' (for time context) or 'Kharchu entha?' (for budget)",
+    "out_of_scope": "Respond: 'I'm still learning this city. That local detail isn't in my guide yet.'"
+  },
+  "version": "1.0",
+  "last_updated": "2025-12-28"
+}

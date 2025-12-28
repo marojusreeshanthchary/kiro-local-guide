@@ -1,0 +1,127 @@
+{
+  "slang_dictionary": {
+    "anna": {
+      "meaning": "Respectful address (brother)",
+      "usage": "Used with anyone older or equal",
+      "example": "Anna, light ga emaina?",
+      "category": "address"
+    },
+    "thammudu": {
+      "meaning": "Friend (literally brother)",
+      "usage": "Casual peer address",
+      "example": "Thammudu, vasthava?",
+      "category": "address"
+    },
+    "light ga": {
+      "meaning": "Light/simple/easy",
+      "usage": "Food ordering context",
+      "example": "Light ga emaina thinali",
+      "category": "food_descriptor"
+    },
+    "heavy ga": {
+      "meaning": "Spicy/rich/filling",
+      "usage": "Food ordering context",
+      "example": "Heavy ga unbaya?",
+      "category": "food_descriptor"
+    },
+    "enti ra": {
+      "meaning": "What's up?",
+      "usage": "Casual greeting",
+      "example": "Enti ra, emaina aypoyindi?",
+      "category": "greeting"
+    },
+    "eppatlo": {
+      "meaning": "When? What time?",
+      "usage": "Time-related question",
+      "example": "Eppatlo vasthava?",
+      "category": "time"
+    },
+    "seri": {
+      "meaning": "OK/agreed",
+      "usage": "Confirmation",
+      "example": "Seri, chalambocham!",
+      "category": "agreement"
+    },
+    "bagundi": {
+      "meaning": "It's good/nice",
+      "usage": "Appreciation/approval",
+      "example": "Dosa bagundi!",
+      "category": "appreciation"
+    },
+    "cheppu": {
+      "meaning": "Tell me",
+      "usage": "Casual request for information",
+      "example": "Cheppu—emaina recommend?",
+      "category": "request"
+    },
+    "inka konni": {
+      "meaning": "A bit more/some more",
+      "usage": "Food ordering",
+      "example": "Samosa inka konni istey",
+      "category": "food_order"
+    },
+    "vizag lo best": {
+      "meaning": "Best in Vizag",
+      "usage": "Recommending something",
+      "example": "Idli-sambar Vizag lo best!",
+      "category": "recommendation"
+    },
+    "seashore lo chill": {
+      "meaning": "Relax by the beach",
+      "usage": "Hangout suggestion",
+      "example": "Seashore lo chill vasthey?",
+      "category": "hangout"
+    },
+    "old city lo maze": {
+      "meaning": "Fun/vibe in old city",
+      "usage": "Street culture reference",
+      "example": "Old City lo maze untey!",
+      "category": "culture"
+    },
+    "rtc lo madathey": {
+      "meaning": "Can manage by RTC bus",
+      "usage": "Transport suggestion",
+      "example": "RTC lo madathey, cheaper!",
+      "category": "transport"
+    },
+    "maze": {
+      "meaning": "Fun/enjoyment",
+      "usage": "General expression",
+      "example": "Maze vasthundi!",
+      "category": "expression"
+    },
+    "chakiri": {
+      "meaning": "Job/work",
+      "usage": "Career context",
+      "example": "IT Corridor lo chakiri bagundi",
+      "category": "work"
+    },
+    "peddalu": {
+      "meaning": "Elders/older people",
+      "usage": "Family/respect context",
+      "category": "family"
+    },
+    "chhotu": {
+      "meaning": "Small child/young person",
+      "usage": "Age reference",
+      "category": "family"
+    }
+  },
+  "local_expressions": {
+    "vizag_lo_best": "Best option in Vizag",
+    "seashore_lo_chill": "Relax by the beach",
+    "old_city_maze": "Old city has fun vibes",
+    "it_corridor_job": "Tech jobs in IT area",
+    "rtc_transport": "Public transport option"
+  },
+  "intent_mapping": {
+    "food": ["thinali", "unbaya", "emaina", "eating", "food", "light", "heavy"],
+    "travel": ["eppatlo", "vasthava", "bus", "auto", "rtc", "transport", "cost"],
+    "hangout": ["chill", "seashore", "beach", "old city", "maze", "spot"],
+    "slang": ["meaning", "what is", "anna", "thammudu", "enti"],
+    "time": ["eppatlo", "best time", "season", "weather"],
+    "budget": ["price", "cost", "kharchu", "cheap", "expensive"]
+  },
+  "version": "1.0",
+  "last_updated": "2025-12-28"
+}
